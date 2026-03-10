@@ -23,7 +23,7 @@
 
 project(
    'virglrenderer', 'c',
-   version: '1.2.0',
+   version: '1.3.0',
    license : 'MIT',
    meson_version : '>= 0.55',
    default_options : ['buildtype=release', 'b_ndebug=if-release',
@@ -39,7 +39,7 @@ project(
 #    and set "revision" and "interface_age" to zero
 
 binary_age    = 1
-interface_age = 10
+interface_age = 11
 revision      = 0
 
 virgl_version = meson.project_version()
@@ -79,11 +79,20 @@ add_project_arguments(cc.get_supported_arguments(flags), language : 'c')
 
 prog_python = import('python').find_installation('python3')
 
+with_host_windows = host_machine.system() == 'windows'
+with_host_darwin = host_machine.system() == 'darwin'
+
 not_found = dependency('', required: false)
 gbm_dep = not_found
 thread_dep = dependency('threads')
 epoxy_dep = dependency('epoxy', version: '>= 1.5.4')
 m_dep = cc.find_library('m', required : false)
+dl_dep = not_found
+if not with_host_windows and not with_host_darwin
+  if not cc.has_function('dlopen')
+    dl_dep = cc.find_library('dl', required : true)
+  endif
+endif
 
 conf_data = configuration_data()
 conf_data.set('VERSION', meson.project_version())
@@ -117,6 +126,11 @@ endif
 with_drm_panfrost = drm_renderers.contains('panfrost-experimental')
 if with_drm_panfrost
   conf_data.set('ENABLE_DRM_PANFROST', 1)
+endif
+
+with_drm_i915 = drm_renderers.contains('i915-experimental')
+if with_drm_i915
+  conf_data.set('ENABLE_DRM_I915', 1)
 endif
 
 with_drm_renderers = drm_renderers.length() > 0
@@ -452,6 +466,7 @@ summary({'c_args': (' ').join(get_option('c_args')),
         'venus': with_venus,
         'drm-amdgpu': with_drm_amdgpu,
         'drm-asahi': with_drm_asahi,
+        'drm-i915': with_drm_i915,
         'drm-panfrost': with_drm_panfrost,
         'drm-msm': with_drm_msm,
         'render server worker': with_render_server ? with_render_server_worker : 'none',

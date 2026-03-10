@@ -68,6 +68,7 @@ venus_sources = [
    'venus/vkr_common.c',
    'venus/vkr_context.c',
    'venus/vkr_cs.c',
+   'venus/vkr_descriptor_heap.c',
    'venus/vkr_descriptor_set.c',
    'venus/vkr_device.c',
    'venus/vkr_device_memory.c',
@@ -131,6 +132,19 @@ drm_panfrost_sources = [
    'drm/panfrost/panfrost_ccmd.c',
 ]
 
+drm_i915_sources = [
+   'drm/drm-uapi/i915_drm.h',
+   'drm/i915/i915_ccmd.c',
+   'drm/i915/i915_ccmd.h',
+   'drm/i915/i915_proto.h',
+   'drm/i915/i915_object.c',
+   'drm/i915/i915_object.h',
+   'drm/i915/i915_resource.c',
+   'drm/i915/i915_resource.h',
+   'drm/i915/i915_renderer.c',
+   'drm/i915/i915_renderer.h',
+]
+
 proxy_sources = [
    'proxy/proxy_client.c',
    'proxy/proxy_common.c',
@@ -150,6 +164,7 @@ virgl_depends = [
    epoxy_dep,
    thread_dep,
    m_dep,
+   dl_dep,
 ]
 
 if conf_data.get('IS_BIONIC') == true
@@ -211,6 +226,10 @@ endif
 
 if with_drm_panfrost
    virgl_sources += drm_panfrost_sources
+endif
+
+if with_drm_i915
+   virgl_sources += drm_i915_sources
 endif
 
 if with_render_server

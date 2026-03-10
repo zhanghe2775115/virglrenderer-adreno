@@ -278,6 +278,70 @@ vn_replace_VkImageDrmFormatModifierExplicitCreateInfoEXT_handle(VkImageDrmFormat
     } while (pnext);
 }
 
+/* struct VkOpaqueCaptureDataCreateInfoEXT chain */
+
+static inline void *
+vn_decode_VkOpaqueCaptureDataCreateInfoEXT_pnext_temp(struct vn_cs_decoder *dec)
+{
+    /* no known/supported struct */
+    if (vn_decode_simple_pointer(dec))
+        vn_cs_decoder_set_fatal(dec);
+    return NULL;
+}
+
+static inline void
+vn_decode_VkOpaqueCaptureDataCreateInfoEXT_self_temp(struct vn_cs_decoder *dec, VkOpaqueCaptureDataCreateInfoEXT *val)
+{
+    /* skip val->{sType,pNext} */
+    if (vn_decode_simple_pointer(dec)) {
+        val->pData = vn_cs_decoder_alloc_temp(dec, sizeof(*val->pData));
+        if (!val->pData) return;
+        vn_decode_VkHostAddressRangeConstEXT_temp(dec, (VkHostAddressRangeConstEXT *)val->pData);
+    } else {
+        val->pData = NULL;
+    }
+}
+
+static inline void
+vn_decode_VkOpaqueCaptureDataCreateInfoEXT_temp(struct vn_cs_decoder *dec, VkOpaqueCaptureDataCreateInfoEXT *val)
+{
+    VkStructureType stype;
+    vn_decode_VkStructureType(dec, &stype);
+    if (stype != VK_STRUCTURE_TYPE_OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT)
+        vn_cs_decoder_set_fatal(dec);
+
+    val->sType = stype;
+    val->pNext = vn_decode_VkOpaqueCaptureDataCreateInfoEXT_pnext_temp(dec);
+    vn_decode_VkOpaqueCaptureDataCreateInfoEXT_self_temp(dec, val);
+}
+
+static inline void
+vn_replace_VkOpaqueCaptureDataCreateInfoEXT_handle_self(VkOpaqueCaptureDataCreateInfoEXT *val)
+{
+    /* skip val->sType */
+    /* skip val->pNext */
+    if (val->pData)
+        vn_replace_VkHostAddressRangeConstEXT_handle((VkHostAddressRangeConstEXT *)val->pData);
+}
+
+static inline void
+vn_replace_VkOpaqueCaptureDataCreateInfoEXT_handle(VkOpaqueCaptureDataCreateInfoEXT *val)
+{
+    struct VkBaseOutStructure *pnext = (struct VkBaseOutStructure *)val;
+
+    do {
+        switch ((int32_t)pnext->sType) {
+        case VK_STRUCTURE_TYPE_OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT:
+            vn_replace_VkOpaqueCaptureDataCreateInfoEXT_handle_self((VkOpaqueCaptureDataCreateInfoEXT *)pnext);
+            break;
+        default:
+            /* ignore unknown/unsupported struct */
+            break;
+        }
+        pnext = pnext->pNext;
+    } while (pnext);
+}
+
 /* struct VkImageCreateInfo chain */
 
 static inline void *
@@ -295,7 +359,7 @@ vn_decode_VkImageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkExternalMemoryImageCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
+            ((VkExternalMemoryImageCreateInfo *)pnext)->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
             vn_decode_VkExternalMemoryImageCreateInfo_self_temp(dec, (VkExternalMemoryImageCreateInfo *)pnext);
         }
         break;
@@ -303,7 +367,7 @@ vn_decode_VkImageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkImageFormatListCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
+            ((VkImageFormatListCreateInfo *)pnext)->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
             vn_decode_VkImageFormatListCreateInfo_self_temp(dec, (VkImageFormatListCreateInfo *)pnext);
         }
         break;
@@ -311,7 +375,7 @@ vn_decode_VkImageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkImageDrmFormatModifierListCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
+            ((VkImageDrmFormatModifierListCreateInfoEXT *)pnext)->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
             vn_decode_VkImageDrmFormatModifierListCreateInfoEXT_self_temp(dec, (VkImageDrmFormatModifierListCreateInfoEXT *)pnext);
         }
         break;
@@ -319,7 +383,7 @@ vn_decode_VkImageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkImageDrmFormatModifierExplicitCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
+            ((VkImageDrmFormatModifierExplicitCreateInfoEXT *)pnext)->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
             vn_decode_VkImageDrmFormatModifierExplicitCreateInfoEXT_self_temp(dec, (VkImageDrmFormatModifierExplicitCreateInfoEXT *)pnext);
         }
         break;
@@ -327,8 +391,16 @@ vn_decode_VkImageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkImageStencilUsageCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
+            ((VkImageStencilUsageCreateInfo *)pnext)->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
             vn_decode_VkImageStencilUsageCreateInfo_self_temp(dec, (VkImageStencilUsageCreateInfo *)pnext);
+        }
+        break;
+    case VK_STRUCTURE_TYPE_OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT:
+        pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkOpaqueCaptureDataCreateInfoEXT));
+        if (pnext) {
+            pnext->sType = stype;
+            ((VkOpaqueCaptureDataCreateInfoEXT *)pnext)->pNext = vn_decode_VkImageCreateInfo_pnext_temp(dec);
+            vn_decode_VkOpaqueCaptureDataCreateInfoEXT_self_temp(dec, (VkOpaqueCaptureDataCreateInfoEXT *)pnext);
         }
         break;
     default:
@@ -425,6 +497,9 @@ vn_replace_VkImageCreateInfo_handle(VkImageCreateInfo *val)
             break;
         case VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO:
             vn_replace_VkImageStencilUsageCreateInfo_handle_self((VkImageStencilUsageCreateInfo *)pnext);
+            break;
+        case VK_STRUCTURE_TYPE_OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT:
+            vn_replace_VkOpaqueCaptureDataCreateInfoEXT_handle_self((VkOpaqueCaptureDataCreateInfoEXT *)pnext);
             break;
         default:
             /* ignore unknown/unsupported struct */
@@ -591,7 +666,7 @@ vn_decode_VkBindImageMemoryInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkBindImageMemoryDeviceGroupInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkBindImageMemoryInfo_pnext_temp(dec);
+            ((VkBindImageMemoryDeviceGroupInfo *)pnext)->pNext = vn_decode_VkBindImageMemoryInfo_pnext_temp(dec);
             vn_decode_VkBindImageMemoryDeviceGroupInfo_self_temp(dec, (VkBindImageMemoryDeviceGroupInfo *)pnext);
         }
         break;
@@ -599,7 +674,7 @@ vn_decode_VkBindImageMemoryInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkBindImagePlaneMemoryInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkBindImageMemoryInfo_pnext_temp(dec);
+            ((VkBindImagePlaneMemoryInfo *)pnext)->pNext = vn_decode_VkBindImageMemoryInfo_pnext_temp(dec);
             vn_decode_VkBindImagePlaneMemoryInfo_self_temp(dec, (VkBindImagePlaneMemoryInfo *)pnext);
         }
         break;
@@ -607,7 +682,7 @@ vn_decode_VkBindImageMemoryInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkBindMemoryStatus));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkBindImageMemoryInfo_pnext_temp(dec);
+            ((VkBindMemoryStatus *)pnext)->pNext = vn_decode_VkBindImageMemoryInfo_pnext_temp(dec);
             vn_decode_VkBindMemoryStatus_self_temp(dec, (VkBindMemoryStatus *)pnext);
         }
         break;
@@ -754,7 +829,7 @@ vn_decode_VkImageMemoryRequirementsInfo2_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkImagePlaneMemoryRequirementsInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkImageMemoryRequirementsInfo2_pnext_temp(dec);
+            ((VkImagePlaneMemoryRequirementsInfo *)pnext)->pNext = vn_decode_VkImageMemoryRequirementsInfo2_pnext_temp(dec);
             vn_decode_VkImagePlaneMemoryRequirementsInfo_self_temp(dec, (VkImagePlaneMemoryRequirementsInfo *)pnext);
         }
         break;
@@ -1172,7 +1247,7 @@ vn_encode_VkSubresourceLayout2_pnext(struct vn_cs_encoder *enc, const void *val)
         case VK_STRUCTURE_TYPE_SUBRESOURCE_HOST_MEMCPY_SIZE:
             vn_encode_simple_pointer(enc, pnext);
             vn_encode_VkStructureType(enc, &pnext->sType);
-            vn_encode_VkSubresourceLayout2_pnext(enc, pnext->pNext);
+            vn_encode_VkSubresourceLayout2_pnext(enc, ((const VkSubresourceHostMemcpySize *)pnext)->pNext);
             vn_encode_VkSubresourceHostMemcpySize_self(enc, (const VkSubresourceHostMemcpySize *)pnext);
             return;
         default:
@@ -1216,7 +1291,7 @@ vn_decode_VkSubresourceLayout2_pnext_partial_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkSubresourceHostMemcpySize));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkSubresourceLayout2_pnext_partial_temp(dec);
+            ((VkSubresourceHostMemcpySize *)pnext)->pNext = vn_decode_VkSubresourceLayout2_pnext_partial_temp(dec);
             vn_decode_VkSubresourceHostMemcpySize_self_partial_temp(dec, (VkSubresourceHostMemcpySize *)pnext);
         }
         break;

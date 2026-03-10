@@ -17,7 +17,7 @@ variables:
   #
   # Pick a pipeline on https://gitlab.freedesktop.org/mesa/mesa/-/pipelines/
   #
-  MESA_PIPELINE_ID: 1594204
+  MESA_PIPELINE_ID: 1610924
 
   MESA_PROJECT_PATH: mesa/mesa
   S3_JWT_FILE: /s3_jwt
@@ -59,7 +59,7 @@ include:
     # IMPORTANT: Use a recent Mesa Git revision
     # The commit ref must be in sync with the pipeline picked above
     # It can be found on the pipeline page below the commit message
-    ref: 042348895560dea1109617facb61bdd618967284
+    ref: 2fa85edd75a4dac145ca9fee78dbe56207aa6870
     file:
       - '/.gitlab-ci/image-tags.yml'
 
@@ -227,6 +227,36 @@ debian/x86_64_build_panfrost:
     - changes:
       - src/drm/**/*
       when: manual
+    - when: never
+
+debian/x86_64_build_i915:
+  stage: build
+  extends:
+    - .use-build-image
+  variables:
+    MINIO_ARTIFACT_NAME: virgl-amd64
+    EXTRA_OPTION: >
+      -D drm-renderers=i915-experimental
+  script:
+    - .gitlab-ci/meson/build.sh
+  artifacts:
+    name: "virgl_${CI_JOB_NAME}"
+    when: always
+    paths:
+      - install/
+      - results/
+  rules:
+    - changes:
+      - src/drm/**/*
+      when: on_success
+    - if: *is-scheduled-pipeline
+      when: on_success
+    - if: *is-post-merge
+      when: never
+    - if: *is-forked-branch-or-pre-merge-not-for-marge
+      when: manual
+    - if: *is-pre-merge-for-marge
+      when: on_success
     - when: never
 
 debian/x86_64_build_msm:

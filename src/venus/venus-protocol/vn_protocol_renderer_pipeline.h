@@ -195,6 +195,455 @@ vn_replace_VkPipelineRobustnessCreateInfo_handle(VkPipelineRobustnessCreateInfo 
     } while (pnext);
 }
 
+/* struct VkDescriptorMappingSourceConstantOffsetEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceConstantOffsetEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceConstantOffsetEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->heapOffset);
+    vn_decode_uint32_t(dec, &val->heapArrayStride);
+    if (vn_decode_simple_pointer(dec)) {
+        val->pEmbeddedSampler = vn_cs_decoder_alloc_temp(dec, sizeof(*val->pEmbeddedSampler));
+        if (!val->pEmbeddedSampler) return;
+        vn_decode_VkSamplerCreateInfo_temp(dec, (VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    } else {
+        val->pEmbeddedSampler = NULL;
+    }
+    vn_decode_uint32_t(dec, &val->samplerHeapOffset);
+    vn_decode_uint32_t(dec, &val->samplerHeapArrayStride);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceConstantOffsetEXT_handle(VkDescriptorMappingSourceConstantOffsetEXT *val)
+{
+    /* skip val->heapOffset */
+    /* skip val->heapArrayStride */
+    if (val->pEmbeddedSampler)
+        vn_replace_VkSamplerCreateInfo_handle((VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    /* skip val->samplerHeapOffset */
+    /* skip val->samplerHeapArrayStride */
+}
+
+/* struct VkDescriptorMappingSourcePushIndexEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourcePushIndexEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourcePushIndexEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->heapOffset);
+    vn_decode_uint32_t(dec, &val->pushOffset);
+    vn_decode_uint32_t(dec, &val->heapIndexStride);
+    vn_decode_uint32_t(dec, &val->heapArrayStride);
+    if (vn_decode_simple_pointer(dec)) {
+        val->pEmbeddedSampler = vn_cs_decoder_alloc_temp(dec, sizeof(*val->pEmbeddedSampler));
+        if (!val->pEmbeddedSampler) return;
+        vn_decode_VkSamplerCreateInfo_temp(dec, (VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    } else {
+        val->pEmbeddedSampler = NULL;
+    }
+    vn_decode_VkBool32(dec, &val->useCombinedImageSamplerIndex);
+    vn_decode_uint32_t(dec, &val->samplerHeapOffset);
+    vn_decode_uint32_t(dec, &val->samplerPushOffset);
+    vn_decode_uint32_t(dec, &val->samplerHeapIndexStride);
+    vn_decode_uint32_t(dec, &val->samplerHeapArrayStride);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourcePushIndexEXT_handle(VkDescriptorMappingSourcePushIndexEXT *val)
+{
+    /* skip val->heapOffset */
+    /* skip val->pushOffset */
+    /* skip val->heapIndexStride */
+    /* skip val->heapArrayStride */
+    if (val->pEmbeddedSampler)
+        vn_replace_VkSamplerCreateInfo_handle((VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    /* skip val->useCombinedImageSamplerIndex */
+    /* skip val->samplerHeapOffset */
+    /* skip val->samplerPushOffset */
+    /* skip val->samplerHeapIndexStride */
+    /* skip val->samplerHeapArrayStride */
+}
+
+/* struct VkDescriptorMappingSourceIndirectIndexEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceIndirectIndexEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceIndirectIndexEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->heapOffset);
+    vn_decode_uint32_t(dec, &val->pushOffset);
+    vn_decode_uint32_t(dec, &val->addressOffset);
+    vn_decode_uint32_t(dec, &val->heapIndexStride);
+    vn_decode_uint32_t(dec, &val->heapArrayStride);
+    if (vn_decode_simple_pointer(dec)) {
+        val->pEmbeddedSampler = vn_cs_decoder_alloc_temp(dec, sizeof(*val->pEmbeddedSampler));
+        if (!val->pEmbeddedSampler) return;
+        vn_decode_VkSamplerCreateInfo_temp(dec, (VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    } else {
+        val->pEmbeddedSampler = NULL;
+    }
+    vn_decode_VkBool32(dec, &val->useCombinedImageSamplerIndex);
+    vn_decode_uint32_t(dec, &val->samplerHeapOffset);
+    vn_decode_uint32_t(dec, &val->samplerPushOffset);
+    vn_decode_uint32_t(dec, &val->samplerAddressOffset);
+    vn_decode_uint32_t(dec, &val->samplerHeapIndexStride);
+    vn_decode_uint32_t(dec, &val->samplerHeapArrayStride);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceIndirectIndexEXT_handle(VkDescriptorMappingSourceIndirectIndexEXT *val)
+{
+    /* skip val->heapOffset */
+    /* skip val->pushOffset */
+    /* skip val->addressOffset */
+    /* skip val->heapIndexStride */
+    /* skip val->heapArrayStride */
+    if (val->pEmbeddedSampler)
+        vn_replace_VkSamplerCreateInfo_handle((VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    /* skip val->useCombinedImageSamplerIndex */
+    /* skip val->samplerHeapOffset */
+    /* skip val->samplerPushOffset */
+    /* skip val->samplerAddressOffset */
+    /* skip val->samplerHeapIndexStride */
+    /* skip val->samplerHeapArrayStride */
+}
+
+/* struct VkDescriptorMappingSourceIndirectIndexArrayEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceIndirectIndexArrayEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceIndirectIndexArrayEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->heapOffset);
+    vn_decode_uint32_t(dec, &val->pushOffset);
+    vn_decode_uint32_t(dec, &val->addressOffset);
+    vn_decode_uint32_t(dec, &val->heapIndexStride);
+    if (vn_decode_simple_pointer(dec)) {
+        val->pEmbeddedSampler = vn_cs_decoder_alloc_temp(dec, sizeof(*val->pEmbeddedSampler));
+        if (!val->pEmbeddedSampler) return;
+        vn_decode_VkSamplerCreateInfo_temp(dec, (VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    } else {
+        val->pEmbeddedSampler = NULL;
+    }
+    vn_decode_VkBool32(dec, &val->useCombinedImageSamplerIndex);
+    vn_decode_uint32_t(dec, &val->samplerHeapOffset);
+    vn_decode_uint32_t(dec, &val->samplerPushOffset);
+    vn_decode_uint32_t(dec, &val->samplerAddressOffset);
+    vn_decode_uint32_t(dec, &val->samplerHeapIndexStride);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceIndirectIndexArrayEXT_handle(VkDescriptorMappingSourceIndirectIndexArrayEXT *val)
+{
+    /* skip val->heapOffset */
+    /* skip val->pushOffset */
+    /* skip val->addressOffset */
+    /* skip val->heapIndexStride */
+    if (val->pEmbeddedSampler)
+        vn_replace_VkSamplerCreateInfo_handle((VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    /* skip val->useCombinedImageSamplerIndex */
+    /* skip val->samplerHeapOffset */
+    /* skip val->samplerPushOffset */
+    /* skip val->samplerAddressOffset */
+    /* skip val->samplerHeapIndexStride */
+}
+
+/* struct VkDescriptorMappingSourceHeapDataEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceHeapDataEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceHeapDataEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->heapOffset);
+    vn_decode_uint32_t(dec, &val->pushOffset);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceHeapDataEXT_handle(VkDescriptorMappingSourceHeapDataEXT *val)
+{
+    /* skip val->heapOffset */
+    /* skip val->pushOffset */
+}
+
+/* struct VkDescriptorMappingSourceIndirectAddressEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceIndirectAddressEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceIndirectAddressEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->pushOffset);
+    vn_decode_uint32_t(dec, &val->addressOffset);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceIndirectAddressEXT_handle(VkDescriptorMappingSourceIndirectAddressEXT *val)
+{
+    /* skip val->pushOffset */
+    /* skip val->addressOffset */
+}
+
+/* struct VkDescriptorMappingSourceShaderRecordIndexEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceShaderRecordIndexEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceShaderRecordIndexEXT *val)
+{
+    vn_decode_uint32_t(dec, &val->heapOffset);
+    vn_decode_uint32_t(dec, &val->shaderRecordOffset);
+    vn_decode_uint32_t(dec, &val->heapIndexStride);
+    vn_decode_uint32_t(dec, &val->heapArrayStride);
+    if (vn_decode_simple_pointer(dec)) {
+        val->pEmbeddedSampler = vn_cs_decoder_alloc_temp(dec, sizeof(*val->pEmbeddedSampler));
+        if (!val->pEmbeddedSampler) return;
+        vn_decode_VkSamplerCreateInfo_temp(dec, (VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    } else {
+        val->pEmbeddedSampler = NULL;
+    }
+    vn_decode_VkBool32(dec, &val->useCombinedImageSamplerIndex);
+    vn_decode_uint32_t(dec, &val->samplerHeapOffset);
+    vn_decode_uint32_t(dec, &val->samplerShaderRecordOffset);
+    vn_decode_uint32_t(dec, &val->samplerHeapIndexStride);
+    vn_decode_uint32_t(dec, &val->samplerHeapArrayStride);
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceShaderRecordIndexEXT_handle(VkDescriptorMappingSourceShaderRecordIndexEXT *val)
+{
+    /* skip val->heapOffset */
+    /* skip val->shaderRecordOffset */
+    /* skip val->heapIndexStride */
+    /* skip val->heapArrayStride */
+    if (val->pEmbeddedSampler)
+        vn_replace_VkSamplerCreateInfo_handle((VkSamplerCreateInfo *)val->pEmbeddedSampler);
+    /* skip val->useCombinedImageSamplerIndex */
+    /* skip val->samplerHeapOffset */
+    /* skip val->samplerShaderRecordOffset */
+    /* skip val->samplerHeapIndexStride */
+    /* skip val->samplerHeapArrayStride */
+}
+
+/* union VkDescriptorMappingSourceDataEXT */
+
+static inline void
+vn_decode_VkDescriptorMappingSourceDataEXT_temp(struct vn_cs_decoder *dec, VkDescriptorMappingSourceDataEXT *val)
+{
+    VkDescriptorMappingSourceEXT tag;
+    vn_decode_VkDescriptorMappingSourceEXT(dec, &tag);
+    switch (tag) {
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_CONSTANT_OFFSET_EXT:
+        vn_decode_VkDescriptorMappingSourceConstantOffsetEXT_temp(dec, &val->constantOffset);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_PUSH_INDEX_EXT:
+        vn_decode_VkDescriptorMappingSourcePushIndexEXT_temp(dec, &val->pushIndex);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_INDIRECT_INDEX_EXT:
+        vn_decode_VkDescriptorMappingSourceIndirectIndexEXT_temp(dec, &val->indirectIndex);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT:
+        vn_decode_VkDescriptorMappingSourceIndirectIndexArrayEXT_temp(dec, &val->indirectIndexArray);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_RESOURCE_HEAP_DATA_EXT:
+        vn_decode_VkDescriptorMappingSourceHeapDataEXT_temp(dec, &val->heapData);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_PUSH_DATA_EXT:
+        vn_decode_uint32_t(dec, &val->pushDataOffset);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_PUSH_ADDRESS_EXT:
+        vn_decode_uint32_t(dec, &val->pushAddressOffset);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_INDIRECT_ADDRESS_EXT:
+        vn_decode_VkDescriptorMappingSourceIndirectAddressEXT_temp(dec, &val->indirectAddress);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_SHADER_RECORD_INDEX_EXT:
+        vn_decode_VkDescriptorMappingSourceShaderRecordIndexEXT_temp(dec, &val->shaderRecordIndex);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_SHADER_RECORD_DATA_EXT:
+        vn_decode_uint32_t(dec, &val->shaderRecordDataOffset);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_SHADER_RECORD_ADDRESS_EXT:
+        vn_decode_uint32_t(dec, &val->shaderRecordAddressOffset);
+        break;
+    default:
+        vn_cs_decoder_set_fatal(dec);
+        break;
+    }
+}
+
+static inline void
+vn_replace_VkDescriptorMappingSourceDataEXT_handle(VkDescriptorMappingSourceDataEXT *val, VkDescriptorMappingSourceEXT tag)
+{
+    switch (tag) {
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_CONSTANT_OFFSET_EXT:
+        vn_replace_VkDescriptorMappingSourceConstantOffsetEXT_handle(&val->constantOffset);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_PUSH_INDEX_EXT:
+        vn_replace_VkDescriptorMappingSourcePushIndexEXT_handle(&val->pushIndex);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_INDIRECT_INDEX_EXT:
+        vn_replace_VkDescriptorMappingSourceIndirectIndexEXT_handle(&val->indirectIndex);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_INDIRECT_INDEX_ARRAY_EXT:
+        vn_replace_VkDescriptorMappingSourceIndirectIndexArrayEXT_handle(&val->indirectIndexArray);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_RESOURCE_HEAP_DATA_EXT:
+        vn_replace_VkDescriptorMappingSourceHeapDataEXT_handle(&val->heapData);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_PUSH_DATA_EXT:
+        /* skip val->pushDataOffset */
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_PUSH_ADDRESS_EXT:
+        /* skip val->pushAddressOffset */
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_INDIRECT_ADDRESS_EXT:
+        vn_replace_VkDescriptorMappingSourceIndirectAddressEXT_handle(&val->indirectAddress);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_HEAP_WITH_SHADER_RECORD_INDEX_EXT:
+        vn_replace_VkDescriptorMappingSourceShaderRecordIndexEXT_handle(&val->shaderRecordIndex);
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_SHADER_RECORD_DATA_EXT:
+        /* skip val->shaderRecordDataOffset */
+        break;
+    case VK_DESCRIPTOR_MAPPING_SOURCE_SHADER_RECORD_ADDRESS_EXT:
+        /* skip val->shaderRecordAddressOffset */
+        break;
+    default:
+        assert(false);
+        break;
+    }
+}
+
+/* struct VkDescriptorSetAndBindingMappingEXT chain */
+
+static inline void *
+vn_decode_VkDescriptorSetAndBindingMappingEXT_pnext_temp(struct vn_cs_decoder *dec)
+{
+    /* no known/supported struct */
+    if (vn_decode_simple_pointer(dec))
+        vn_cs_decoder_set_fatal(dec);
+    return NULL;
+}
+
+static inline void
+vn_decode_VkDescriptorSetAndBindingMappingEXT_self_temp(struct vn_cs_decoder *dec, VkDescriptorSetAndBindingMappingEXT *val)
+{
+    /* skip val->{sType,pNext} */
+    vn_decode_uint32_t(dec, &val->descriptorSet);
+    vn_decode_uint32_t(dec, &val->firstBinding);
+    vn_decode_uint32_t(dec, &val->bindingCount);
+    vn_decode_VkFlags(dec, &val->resourceMask);
+    vn_decode_VkDescriptorMappingSourceEXT(dec, &val->source);
+    vn_decode_VkDescriptorMappingSourceDataEXT_temp(dec, &val->sourceData);
+}
+
+static inline void
+vn_decode_VkDescriptorSetAndBindingMappingEXT_temp(struct vn_cs_decoder *dec, VkDescriptorSetAndBindingMappingEXT *val)
+{
+    VkStructureType stype;
+    vn_decode_VkStructureType(dec, &stype);
+    if (stype != VK_STRUCTURE_TYPE_DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT)
+        vn_cs_decoder_set_fatal(dec);
+
+    val->sType = stype;
+    val->pNext = vn_decode_VkDescriptorSetAndBindingMappingEXT_pnext_temp(dec);
+    vn_decode_VkDescriptorSetAndBindingMappingEXT_self_temp(dec, val);
+}
+
+static inline void
+vn_replace_VkDescriptorSetAndBindingMappingEXT_handle_self(VkDescriptorSetAndBindingMappingEXT *val)
+{
+    /* skip val->sType */
+    /* skip val->pNext */
+    /* skip val->descriptorSet */
+    /* skip val->firstBinding */
+    /* skip val->bindingCount */
+    /* skip val->resourceMask */
+    /* skip val->source */
+    vn_replace_VkDescriptorMappingSourceDataEXT_handle(&val->sourceData, val->source);
+}
+
+static inline void
+vn_replace_VkDescriptorSetAndBindingMappingEXT_handle(VkDescriptorSetAndBindingMappingEXT *val)
+{
+    struct VkBaseOutStructure *pnext = (struct VkBaseOutStructure *)val;
+
+    do {
+        switch ((int32_t)pnext->sType) {
+        case VK_STRUCTURE_TYPE_DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT:
+            vn_replace_VkDescriptorSetAndBindingMappingEXT_handle_self((VkDescriptorSetAndBindingMappingEXT *)pnext);
+            break;
+        default:
+            /* ignore unknown/unsupported struct */
+            break;
+        }
+        pnext = pnext->pNext;
+    } while (pnext);
+}
+
+/* struct VkShaderDescriptorSetAndBindingMappingInfoEXT chain */
+
+static inline void *
+vn_decode_VkShaderDescriptorSetAndBindingMappingInfoEXT_pnext_temp(struct vn_cs_decoder *dec)
+{
+    /* no known/supported struct */
+    if (vn_decode_simple_pointer(dec))
+        vn_cs_decoder_set_fatal(dec);
+    return NULL;
+}
+
+static inline void
+vn_decode_VkShaderDescriptorSetAndBindingMappingInfoEXT_self_temp(struct vn_cs_decoder *dec, VkShaderDescriptorSetAndBindingMappingInfoEXT *val)
+{
+    /* skip val->{sType,pNext} */
+    vn_decode_uint32_t(dec, &val->mappingCount);
+    if (vn_peek_array_size(dec)) {
+        const uint32_t iter_count = vn_decode_array_size(dec, val->mappingCount);
+        val->pMappings = vn_cs_decoder_alloc_temp_array(dec, sizeof(*val->pMappings), iter_count);
+        if (!val->pMappings) return;
+        for (uint32_t i = 0; i < iter_count; i++)
+            vn_decode_VkDescriptorSetAndBindingMappingEXT_temp(dec, &((VkDescriptorSetAndBindingMappingEXT *)val->pMappings)[i]);
+    } else {
+        vn_decode_array_size(dec, val->mappingCount);
+        val->pMappings = NULL;
+    }
+}
+
+static inline void
+vn_decode_VkShaderDescriptorSetAndBindingMappingInfoEXT_temp(struct vn_cs_decoder *dec, VkShaderDescriptorSetAndBindingMappingInfoEXT *val)
+{
+    VkStructureType stype;
+    vn_decode_VkStructureType(dec, &stype);
+    if (stype != VK_STRUCTURE_TYPE_SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT)
+        vn_cs_decoder_set_fatal(dec);
+
+    val->sType = stype;
+    val->pNext = vn_decode_VkShaderDescriptorSetAndBindingMappingInfoEXT_pnext_temp(dec);
+    vn_decode_VkShaderDescriptorSetAndBindingMappingInfoEXT_self_temp(dec, val);
+}
+
+static inline void
+vn_replace_VkShaderDescriptorSetAndBindingMappingInfoEXT_handle_self(VkShaderDescriptorSetAndBindingMappingInfoEXT *val)
+{
+    /* skip val->sType */
+    /* skip val->pNext */
+    /* skip val->mappingCount */
+    if (val->pMappings) {
+       for (uint32_t i = 0; i < val->mappingCount; i++)
+            vn_replace_VkDescriptorSetAndBindingMappingEXT_handle(&((VkDescriptorSetAndBindingMappingEXT *)val->pMappings)[i]);
+    }
+}
+
+static inline void
+vn_replace_VkShaderDescriptorSetAndBindingMappingInfoEXT_handle(VkShaderDescriptorSetAndBindingMappingInfoEXT *val)
+{
+    struct VkBaseOutStructure *pnext = (struct VkBaseOutStructure *)val;
+
+    do {
+        switch ((int32_t)pnext->sType) {
+        case VK_STRUCTURE_TYPE_SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT:
+            vn_replace_VkShaderDescriptorSetAndBindingMappingInfoEXT_handle_self((VkShaderDescriptorSetAndBindingMappingInfoEXT *)pnext);
+            break;
+        default:
+            /* ignore unknown/unsupported struct */
+            break;
+        }
+        pnext = pnext->pNext;
+    } while (pnext);
+}
+
 /* struct VkPipelineShaderStageCreateInfo chain */
 
 static inline void *
@@ -212,7 +661,7 @@ vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkShaderModuleCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
+            ((VkShaderModuleCreateInfo *)pnext)->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
             vn_decode_VkShaderModuleCreateInfo_self_temp(dec, (VkShaderModuleCreateInfo *)pnext);
         }
         break;
@@ -220,7 +669,7 @@ vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineShaderStageRequiredSubgroupSizeCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
+            ((VkPipelineShaderStageRequiredSubgroupSizeCreateInfo *)pnext)->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineShaderStageRequiredSubgroupSizeCreateInfo_self_temp(dec, (VkPipelineShaderStageRequiredSubgroupSizeCreateInfo *)pnext);
         }
         break;
@@ -228,8 +677,16 @@ vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRobustnessCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
+            ((VkPipelineRobustnessCreateInfo *)pnext)->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRobustnessCreateInfo_self_temp(dec, (VkPipelineRobustnessCreateInfo *)pnext);
+        }
+        break;
+    case VK_STRUCTURE_TYPE_SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT:
+        pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkShaderDescriptorSetAndBindingMappingInfoEXT));
+        if (pnext) {
+            pnext->sType = stype;
+            ((VkShaderDescriptorSetAndBindingMappingInfoEXT *)pnext)->pNext = vn_decode_VkPipelineShaderStageCreateInfo_pnext_temp(dec);
+            vn_decode_VkShaderDescriptorSetAndBindingMappingInfoEXT_self_temp(dec, (VkShaderDescriptorSetAndBindingMappingInfoEXT *)pnext);
         }
         break;
     default:
@@ -311,6 +768,9 @@ vn_replace_VkPipelineShaderStageCreateInfo_handle(VkPipelineShaderStageCreateInf
             break;
         case VK_STRUCTURE_TYPE_PIPELINE_ROBUSTNESS_CREATE_INFO:
             vn_replace_VkPipelineRobustnessCreateInfo_handle_self((VkPipelineRobustnessCreateInfo *)pnext);
+            break;
+        case VK_STRUCTURE_TYPE_SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT:
+            vn_replace_VkShaderDescriptorSetAndBindingMappingInfoEXT_handle_self((VkShaderDescriptorSetAndBindingMappingInfoEXT *)pnext);
             break;
         default:
             /* ignore unknown/unsupported struct */
@@ -462,7 +922,7 @@ vn_decode_VkPipelineVertexInputStateCreateInfo_pnext_temp(struct vn_cs_decoder *
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineVertexInputDivisorStateCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineVertexInputStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineVertexInputDivisorStateCreateInfo *)pnext)->pNext = vn_decode_VkPipelineVertexInputStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineVertexInputDivisorStateCreateInfo_self_temp(dec, (VkPipelineVertexInputDivisorStateCreateInfo *)pnext);
         }
         break;
@@ -692,7 +1152,7 @@ vn_decode_VkPipelineTessellationStateCreateInfo_pnext_temp(struct vn_cs_decoder 
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineTessellationDomainOriginStateCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineTessellationStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineTessellationDomainOriginStateCreateInfo *)pnext)->pNext = vn_decode_VkPipelineTessellationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineTessellationDomainOriginStateCreateInfo_self_temp(dec, (VkPipelineTessellationDomainOriginStateCreateInfo *)pnext);
         }
         break;
@@ -897,7 +1357,7 @@ vn_decode_VkPipelineViewportStateCreateInfo_pnext_temp(struct vn_cs_decoder *dec
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineViewportDepthClipControlCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineViewportStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineViewportDepthClipControlCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineViewportStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineViewportDepthClipControlCreateInfoEXT_self_temp(dec, (VkPipelineViewportDepthClipControlCreateInfoEXT *)pnext);
         }
         break;
@@ -905,7 +1365,7 @@ vn_decode_VkPipelineViewportStateCreateInfo_pnext_temp(struct vn_cs_decoder *dec
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineViewportDepthClampControlCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineViewportStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineViewportDepthClampControlCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineViewportStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineViewportDepthClampControlCreateInfoEXT_self_temp(dec, (VkPipelineViewportDepthClampControlCreateInfoEXT *)pnext);
         }
         break;
@@ -1319,7 +1779,7 @@ vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(struct vn_cs_decoder
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRasterizationConservativeStateCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineRasterizationConservativeStateCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRasterizationConservativeStateCreateInfoEXT_self_temp(dec, (VkPipelineRasterizationConservativeStateCreateInfoEXT *)pnext);
         }
         break;
@@ -1327,7 +1787,7 @@ vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(struct vn_cs_decoder
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRasterizationStateStreamCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineRasterizationStateStreamCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRasterizationStateStreamCreateInfoEXT_self_temp(dec, (VkPipelineRasterizationStateStreamCreateInfoEXT *)pnext);
         }
         break;
@@ -1335,7 +1795,7 @@ vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(struct vn_cs_decoder
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRasterizationDepthClipStateCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineRasterizationDepthClipStateCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRasterizationDepthClipStateCreateInfoEXT_self_temp(dec, (VkPipelineRasterizationDepthClipStateCreateInfoEXT *)pnext);
         }
         break;
@@ -1343,7 +1803,7 @@ vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(struct vn_cs_decoder
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRasterizationLineStateCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineRasterizationLineStateCreateInfo *)pnext)->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRasterizationLineStateCreateInfo_self_temp(dec, (VkPipelineRasterizationLineStateCreateInfo *)pnext);
         }
         break;
@@ -1351,7 +1811,7 @@ vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(struct vn_cs_decoder
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRasterizationProvokingVertexStateCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineRasterizationProvokingVertexStateCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRasterizationProvokingVertexStateCreateInfoEXT_self_temp(dec, (VkPipelineRasterizationProvokingVertexStateCreateInfoEXT *)pnext);
         }
         break;
@@ -1359,7 +1819,7 @@ vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(struct vn_cs_decoder
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkDepthBiasRepresentationInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
+            ((VkDepthBiasRepresentationInfoEXT *)pnext)->pNext = vn_decode_VkPipelineRasterizationStateCreateInfo_pnext_temp(dec);
             vn_decode_VkDepthBiasRepresentationInfoEXT_self_temp(dec, (VkDepthBiasRepresentationInfoEXT *)pnext);
         }
         break;
@@ -1533,7 +1993,7 @@ vn_decode_VkPipelineMultisampleStateCreateInfo_pnext_temp(struct vn_cs_decoder *
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineSampleLocationsStateCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineMultisampleStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineSampleLocationsStateCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineMultisampleStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineSampleLocationsStateCreateInfoEXT_self_temp(dec, (VkPipelineSampleLocationsStateCreateInfoEXT *)pnext);
         }
         break;
@@ -1890,7 +2350,7 @@ vn_decode_VkPipelineColorBlendStateCreateInfo_pnext_temp(struct vn_cs_decoder *d
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineColorBlendAdvancedStateCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineColorBlendStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineColorBlendAdvancedStateCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineColorBlendStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineColorBlendAdvancedStateCreateInfoEXT_self_temp(dec, (VkPipelineColorBlendAdvancedStateCreateInfoEXT *)pnext);
         }
         break;
@@ -1898,7 +2358,7 @@ vn_decode_VkPipelineColorBlendStateCreateInfo_pnext_temp(struct vn_cs_decoder *d
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineColorWriteCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkPipelineColorBlendStateCreateInfo_pnext_temp(dec);
+            ((VkPipelineColorWriteCreateInfoEXT *)pnext)->pNext = vn_decode_VkPipelineColorBlendStateCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineColorWriteCreateInfoEXT_self_temp(dec, (VkPipelineColorWriteCreateInfoEXT *)pnext);
         }
         break;
@@ -2492,7 +2952,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineCreateFlags2CreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineCreateFlags2CreateInfo *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineCreateFlags2CreateInfo_self_temp(dec, (VkPipelineCreateFlags2CreateInfo *)pnext);
         }
         break;
@@ -2500,7 +2960,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineLibraryCreateInfoKHR));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineLibraryCreateInfoKHR *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineLibraryCreateInfoKHR_self_temp(dec, (VkPipelineLibraryCreateInfoKHR *)pnext);
         }
         break;
@@ -2508,7 +2968,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineCreationFeedbackCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineCreationFeedbackCreateInfo *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineCreationFeedbackCreateInfo_self_temp(dec, (VkPipelineCreationFeedbackCreateInfo *)pnext);
         }
         break;
@@ -2516,7 +2976,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineFragmentShadingRateStateCreateInfoKHR));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineFragmentShadingRateStateCreateInfoKHR *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineFragmentShadingRateStateCreateInfoKHR_self_temp(dec, (VkPipelineFragmentShadingRateStateCreateInfoKHR *)pnext);
         }
         break;
@@ -2524,7 +2984,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRenderingCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineRenderingCreateInfo *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRenderingCreateInfo_self_temp(dec, (VkPipelineRenderingCreateInfo *)pnext);
         }
         break;
@@ -2532,7 +2992,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkGraphicsPipelineLibraryCreateInfoEXT));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkGraphicsPipelineLibraryCreateInfoEXT *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkGraphicsPipelineLibraryCreateInfoEXT_self_temp(dec, (VkGraphicsPipelineLibraryCreateInfoEXT *)pnext);
         }
         break;
@@ -2540,7 +3000,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRobustnessCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineRobustnessCreateInfo *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRobustnessCreateInfo_self_temp(dec, (VkPipelineRobustnessCreateInfo *)pnext);
         }
         break;
@@ -2548,7 +3008,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkRenderingAttachmentLocationInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkRenderingAttachmentLocationInfo *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkRenderingAttachmentLocationInfo_self_temp(dec, (VkRenderingAttachmentLocationInfo *)pnext);
         }
         break;
@@ -2556,7 +3016,7 @@ vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkRenderingInputAttachmentIndexInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
+            ((VkRenderingInputAttachmentIndexInfo *)pnext)->pNext = vn_decode_VkGraphicsPipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkRenderingInputAttachmentIndexInfo_self_temp(dec, (VkRenderingInputAttachmentIndexInfo *)pnext);
         }
         break;
@@ -2767,7 +3227,7 @@ vn_decode_VkComputePipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineCreateFlags2CreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkComputePipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineCreateFlags2CreateInfo *)pnext)->pNext = vn_decode_VkComputePipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineCreateFlags2CreateInfo_self_temp(dec, (VkPipelineCreateFlags2CreateInfo *)pnext);
         }
         break;
@@ -2775,7 +3235,7 @@ vn_decode_VkComputePipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineCreationFeedbackCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkComputePipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineCreationFeedbackCreateInfo *)pnext)->pNext = vn_decode_VkComputePipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineCreationFeedbackCreateInfo_self_temp(dec, (VkPipelineCreationFeedbackCreateInfo *)pnext);
         }
         break;
@@ -2783,7 +3243,7 @@ vn_decode_VkComputePipelineCreateInfo_pnext_temp(struct vn_cs_decoder *dec)
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRobustnessCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkComputePipelineCreateInfo_pnext_temp(dec);
+            ((VkPipelineRobustnessCreateInfo *)pnext)->pNext = vn_decode_VkComputePipelineCreateInfo_pnext_temp(dec);
             vn_decode_VkPipelineRobustnessCreateInfo_self_temp(dec, (VkPipelineRobustnessCreateInfo *)pnext);
         }
         break;
@@ -3007,7 +3467,7 @@ vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(struct vn_cs_decoder *dec
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineCreateFlags2CreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(dec);
+            ((VkPipelineCreateFlags2CreateInfo *)pnext)->pNext = vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(dec);
             vn_decode_VkPipelineCreateFlags2CreateInfo_self_temp(dec, (VkPipelineCreateFlags2CreateInfo *)pnext);
         }
         break;
@@ -3015,7 +3475,7 @@ vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(struct vn_cs_decoder *dec
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineCreationFeedbackCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(dec);
+            ((VkPipelineCreationFeedbackCreateInfo *)pnext)->pNext = vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(dec);
             vn_decode_VkPipelineCreationFeedbackCreateInfo_self_temp(dec, (VkPipelineCreationFeedbackCreateInfo *)pnext);
         }
         break;
@@ -3023,7 +3483,7 @@ vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(struct vn_cs_decoder *dec
         pnext = vn_cs_decoder_alloc_temp(dec, sizeof(VkPipelineRobustnessCreateInfo));
         if (pnext) {
             pnext->sType = stype;
-            pnext->pNext = vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(dec);
+            ((VkPipelineRobustnessCreateInfo *)pnext)->pNext = vn_decode_VkRayTracingPipelineCreateInfoKHR_pnext_temp(dec);
             vn_decode_VkPipelineRobustnessCreateInfo_self_temp(dec, (VkPipelineRobustnessCreateInfo *)pnext);
         }
         break;
