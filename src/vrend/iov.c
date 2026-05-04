@@ -91,6 +91,8 @@ size_t vrend_write_to_iovec(const struct iovec *iov, int iovlen,
   size_t written = 0;
   size_t len;
 
+
+   
   while (count > 0 && iovlen > 0) {
     if (iov->iov_len > offset) {
       len = iov->iov_len - offset;
