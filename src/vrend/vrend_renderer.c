@@ -418,6 +418,9 @@ static struct global_renderer_state vrend_state;
 
 static inline bool has_feature(enum features_id feature_id)
 {
+   if (feature_id == feat_dual_src_blend) {
+      return false;
+   }
    int slot = feature_id / 64;
    uint64_t mask = 1ull << (feature_id & 63);
    bool retval = vrend_state.features[slot] & mask ? true : false;
@@ -8021,7 +8024,7 @@ struct vrend_context *vrend_create_context(int id, uint32_t nlen, const char *de
    grctx->shader_cfg.has_es31_compat = has_feature(feat_gles31_compatibility);
    grctx->shader_cfg.has_conservative_depth = has_feature(feat_conservative_depth);
    grctx->shader_cfg.use_integer = vrend_state.use_integer;
-   grctx->shader_cfg.has_dual_src_blend = has_feature(feat_dual_src_blend);
+   grctx->shader_cfg.has_dual_src_blend = false;//has_feature(feat_dual_src_blend);
    grctx->shader_cfg.has_fbfetch_coherent = has_feature(feat_framebuffer_fetch);
    grctx->shader_cfg.has_cull_distance = has_feature(feat_cull_distance);
    grctx->shader_cfg.has_nopersective = has_feature(feat_shader_noperspective_interpolation);
